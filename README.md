@@ -8,23 +8,18 @@ This dataset consists of roughly 293,000 pokemon sightings (historical appearanc
 ### Directory Hierarchy
 pokemonCatch
 
-+--+/Data
-   |
-   +--/pokemonNumbers.csv   
-   |
-   +--/smalldata.csv   
-   |  
-+--+/DataVisual  
-   |
-   +--/OriginDataVisual.ipynb     # original data visualization   
-   |
-   +--/PredictDataVisual.ipynb    # predict data visualiztion   
-+--+/FeatureExtraction  
-   |
-   +--/CorrelationAnalysis.ipynb  # Analysis correlation between features  
-   |
-   +--/feature_abstract.ipynb     #   
-   |
+|--Data    
+|      |--pokemonNumbers.csv            
+
+| 	|----/smalldata.csv   
+|--DataVisual   
+|   	|--OriginDataVisual.ipynb     # original data visualization   
+|	|--PredictDataVisual.ipynb    # predict data visualiztion  
+|--FeatureExtraction  
+|  	|--CorrelationAnalysis.ipynb  # Analysis correlation between features  
+|      |--feature_abstract.ipynb     #  
+
+|	|
    +--/FeatureSelection.ipynb     #   
    |
    +--/OutputasCity.ipynb   
