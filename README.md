@@ -12,22 +12,26 @@ pokemonCatch
   /pokemonNumbers.csv \\
   /smalldata.csv \\
   
+/DataVisual\\
+  /OriginDataVisual.ipynb     # original data visualization \\
+  /PredictDataVisual.ipynb    # predict data visualiztion \\
 
 /FeatureExtraction\\
   /CorrelationAnalysis.ipynb  # Analysis correlation between features\\
   /feature_abstract.ipynb     # \\
   /FeatureSelection.ipynb     # \\
-  /final_project_1.ipynb      # \\
-  /OriginDataVisual.ipynb     # original data visualization \\
-  /OutputasCity.ipynb
-  /PredictDataVisual.ipynb    # predict data visualiztion \\
+  /OutputasCity.ipynb \\
   /PredictPokemonid.ipynb     # predict pokemon id based on historical data \\
+
+/Pic
+
+/Predict
+  /predict_id.ipynb
+  /predic_location.ipynb
+  /SimilarPokemonPredict.ipynb
 
 /Result
 
-/pic
-
-/Predict
 
 ### Prerequisites
 python3.7
