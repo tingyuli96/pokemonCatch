@@ -10,22 +10,22 @@ This dataset consists of roughly 293,000 pokemon sightings (historical appearanc
 ````
 pokemonCatch
 |--Data    
-|   |--pokemonNumbers.csv            
-| 	|--smalldata.csv   
+|	|--pokemonNumbers.csv            
+|	|--smalldata.csv   
 |--DataVisual   
-|   	|--OriginDataVisual.ipynb     # original data visualization   
+|	|--OriginDataVisual.ipynb     # original data visualization   
 |	|--PredictDataVisual.ipynb    # predict data visualiztion  
 |--FeatureExtraction  
-|  	|--CorrelationAnalysis.ipynb  # Analysis correlation between features  
-|   |--feature_abstract.ipynb     #  
+|	|--CorrelationAnalysis.ipynb  # Analysis correlation between features  
+|	|--feature_abstract.ipynb     #  
 |	|--FeatureSelection.ipynb     #   
-|   |--OutputasCity.ipynb   
-|   |--/PredictPokemonid.ipynb     # predict pokemon id based on historical data  
+|	|--OutputasCity.ipynb   
+|	|--/PredictPokemonid.ipynb     # predict pokemon id based on historical data  
 |--Pic
 |--Predict  
-|   |--predict_id.ipynb
-|   |--predic_location.ipynb  
-|   |--SimilarPokemonPredict.ipynb  
+|	|--predict_id.ipynb
+|	|--predic_location.ipynb  
+|	|--SimilarPokemonPredict.ipynb  
 +--Result  
 ````
 
