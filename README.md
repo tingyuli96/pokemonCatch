@@ -3,11 +3,15 @@ PokemonGo is a mobile AR game, where players can catch virtual creatures Pokemon
 ## Getting Started
 ### Dataset
 https://www.kaggle.com/semioniy/predictemall/home
+
 This dataset consists of roughly 293,000 pokemon sightings (historical appearances of Pokemon), having coordinates, time, weather, population density, distance to pokestops/ gyms etc. as features.
 ### Directory Hierarchy
 pokemonCatch
-/Data \\ 
+
+/Data
+
     pokemonNumbers.csv
+
 /FeatureExtraction
 
 /Result
