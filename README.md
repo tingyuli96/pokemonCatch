@@ -9,7 +9,7 @@ This dataset consists of roughly 293,000 pokemon sightings (historical appearanc
 pokemonCatch
 
 /Data  
-  /pokemonNumbers.csv   
+  >/pokemonNumbers.csv   
   /smalldata.csv   
   
 /DataVisual  
