@@ -6,35 +6,28 @@ https://www.kaggle.com/semioniy/predictemall/home
 
 This dataset consists of roughly 293,000 pokemon sightings (historical appearances of Pokemon), having coordinates, time, weather, population density, distance to pokestops/ gyms etc. as features.
 ### Directory Hierarchy
+
+````
 pokemonCatch
-
 |--Data    
-|      |--pokemonNumbers.csv            
-
-| 	|----/smalldata.csv   
+|   |--pokemonNumbers.csv            
+| 	|--smalldata.csv   
 |--DataVisual   
 |   	|--OriginDataVisual.ipynb     # original data visualization   
 |	|--PredictDataVisual.ipynb    # predict data visualiztion  
 |--FeatureExtraction  
 |  	|--CorrelationAnalysis.ipynb  # Analysis correlation between features  
-|      |--feature_abstract.ipynb     #  
-
-|	|
-   +--/FeatureSelection.ipynb     #   
-   |
-   +--/OutputasCity.ipynb   
-   |
-   +--/PredictPokemonid.ipynb     # predict pokemon id based on historical data  
-+---/Pic
-|
-+--+/Predict  
-   |
-   +--/predict_id.ipynb
-   |
-   +--/predic_location.ipynb  
-   |
-   +--/SimilarPokemonPredict.ipynb  
-+---/Result  
+|   |--feature_abstract.ipynb     #  
+|	|--FeatureSelection.ipynb     #   
+|   |--OutputasCity.ipynb   
+|   |--/PredictPokemonid.ipynb     # predict pokemon id based on historical data  
+|--Pic
+|--Predict  
+|   |--predict_id.ipynb
+|   |--predic_location.ipynb  
+|   |--SimilarPokemonPredict.ipynb  
++--Result  
+````
 
 
 ### Prerequisites
