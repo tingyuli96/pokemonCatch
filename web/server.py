@@ -9,7 +9,7 @@ app = Flask(__name__, template_folder=tmpl_dir)
 def hello():
     hello = "Hello World!"
     context = dict(data=hello)
-    return render_template("index.html", **context)
+    return render_template("pokemon_city.html", **context)
 
 if __name__ == "__main__":
     app.run(debug=True)

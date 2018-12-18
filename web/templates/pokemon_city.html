@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pokemon and City</title>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <style>
+      .axis path,
+      .axis line {
+           fill:none ;
+           stroke: black;
+           shape-rendering: crispedges;
+      }
+      .axis text {
+           font-family: sans-serif;
+           font-size: 11px;
+      }
+ </style>
+</head>
+<body>
+    <h1 align="center">Pikachu City Distribution</h1>
+    <p id = "choice1">Sort Desc</p>
+    <p id = "choice2">Sort Dec</p>
+    <p id = "choice3">Alpha Sort</p>
+
+    <script type="text/javascript">
+
+    //Load Data
+    d3.csv("../static/pikachu_city.csv", function(data) {
+    //console.log(data)
+
+
+          d3.select("#choice1").on("click",function mysort(){
+                  data = data.sort((a, b) => b.y - a.y)
+                  draw(data)
+            })
+
+            d3.select("#choice2").on("click",function mysort(){
+                    data = data.sort((a, b) => a.y - b.y)
+                    draw(data)
+              })
+            d3.select("#choice3").on("click",function mysort(){
+                      data = data.sort((a, b) => a.x.localeCompare(b.x))
+                      draw(data)
+                })
+
+          //Index function
+          var height = 600
+          var width = 1800
+          var padding ={  top: 40,
+                          right: 40,
+                          bottom: 80,
+                          left: 40,
+                          }
+          var svg = d3.select("body")
+                    .append("svg")
+                    .attr("width",width)
+                    .attr("height",height)
+          var color = d3.scale.category10()
+
+
+        //Axis width set
+        var xAxisWidth = 1800
+        var yAxisWidth = 600
+
+        //Axis Domain and Range set
+        aaa = data.map(function(data){return data.y})
+        console.log(padding.bottom)
+        var xScale = d3.scale.ordinal()
+                    .domain(data.map(d => d.x))
+                    .rangeRoundBands([0,xAxisWidth],0.1)
+                    //.padding(0.1)
+                    //.rangeRoundBands([0,xAxisWidth],0.1)
+
+        var yScale = d3.scale.linear()
+                    .domain([0,d3.max(aaa)])
+                    .range([0,yAxisWidth])
+
+
+      //Rectangle Bar Chart
+      var rect = svg.selectAll("rect")
+                .data(data)
+                .enter()
+                .append("rect")
+                .attr("fill",function(d,i){return color(i%10)})
+                .attr("x", function(d,i){return padding.left + xScale(d.x);})
+                .attr("y", function(d,i){return height - padding.bottom})
+                .attr("width",xScale.rangeBand())
+                .attr("height",function(d){return yScale(d.y)})
+
+      //Set animation
+      var rectTrain = rect.transition()
+                      .delay(500)
+                      .duration(1000)
+                      .ease("linear-in")
+                      .attr("y",function(d,i){return height - padding.bottom - yScale(d.y)})
+
+      //Set axis
+      var xAxis = d3.svg.axis()
+                .scale(xScale)
+                .orient("bottem")
+
+
+      yScale.range([yAxisWidth,0]); //Because of location arrange, need reverse
+      var yAxis = d3.svg.axis()
+                .scale(yScale)
+                .orient("left")
+
+
+      svg.append("g")
+          .attr("class","axis")
+          .attr("transform", "translate(" + padding.left + "," + (height -padding.bottom) + ")")
+          .call(xAxis)
+          .selectAll("text")
+          .attr("y", 0)
+          .attr("x", 9)
+          .attr("dy", ".35em")
+          .attr("transform", "rotate(90)")
+          .style("text-anchor", "start");
+
+      svg.append("g")
+          .attr("class","axis")
+          .attr("transform", "translate(" + padding.left + "," +(height - padding.bottom - yAxisWidth) + ")")
+          .call(yAxis)
+
+
+
+/////////////////////////////////////////////////////////////////////////
+function draw(data){
+
+  //Load Data
+  var updaterect = svg.selectAll("rect").data(data)
+  var enterrect = updaterect.enter()
+  var exitrect = updaterect.exit()
+
+  //Axis
+  var xAxisWidth = 1800
+  var yAxisWidth = 600
+  var xScale = d3.scale.ordinal()
+              .domain(data.map(d => d.x))
+              .rangeRoundBands([0,xAxisWidth],0.1)
+
+  aaa = data.map(function(data){return data.y})
+  var yScale = d3.scale.linear()
+              .domain([0,d3.max(aaa)])
+              .range([0,yAxisWidth])
+
+
+  updaterect.attr("fill",function(d,i){return color(i%10)})
+            .style("mix-blend-mode", "multiply")
+
+              const t = updaterect.transition()
+                  .duration(750);
+
+              updaterect.data(data,function(d){return d.x})
+                .order()
+                .transition(t)
+                .delay((d, i) => i * 20)
+                .attr("x", function(d,i){return padding.left + xScale(d.x) })
+                .attr("y", function(d,i){return height - padding.bottom - yScale(d.y);})
+                .attr("width",xScale.rangeBand())
+                .attr("height",function(d){return yScale(d.y)})
+
+
+                var xAxis = d3.svg.axis()
+                          .scale(xScale)
+                          .orient("bottem")
+
+                svg.select("g")
+                    .call(xAxis)
+                    .attr("class","axis")
+                    .attr("transform", "translate(" + padding.left + "," + (height -padding.bottom) + ")")
+                    .call(xAxis)
+                    .selectAll("text")
+                    .attr("y", 0)
+                    .attr("x", 9)
+                    .attr("dy", ".35em")
+                    .attr("transform", "rotate(90)")
+                    .style("text-anchor", "start");
+
+}
+
+
+
+              });
+
+
+    </script>
+
+</body>
+</html>
