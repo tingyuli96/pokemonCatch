@@ -6,8 +6,9 @@ Let's Catch Pokemon
 
 {% block styles %}
 {{super()}}
-<link rel="stylesheet" href="{{url_for('.static', filename='signin.css')}}">
 <link rel="stylesheet" href="{{url_for('.static', filename='starter-template.css')}}">
+<!-- <link rel="stylesheet" href="{{url_for('.static', filename='signin.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='update.css')}}"> -->
 {% endblock %}
 
 {% block content %}
@@ -34,7 +35,7 @@ Let's Catch Pokemon
       </div>
     </nav>
 
-    <div class="container">
+  <div class="container">
       <div class="starter-template">
      <!--    <h1>Predict pokemon</h1> -->
 <!--         <div class="container">
@@ -49,9 +50,9 @@ Let's Catch Pokemon
       </form>
     </div> --> 
 
-    <div class='container'>
+<!--     <div class='container'> -->
         <!-- <div class="form-group"> -->
-      <h2 class="form-signin-heading">Predict pokemon</h1>
+      <h2 class="form-signin-heading">Predict pokemon</h2>
       <p>The condition you want to test:</p>
         <form method="POST" action="/search_id">  
         <div class="form-group col-md-6">
@@ -150,35 +151,126 @@ Let's Catch Pokemon
         </div>
            <button class="btn btn-lg btn-primary btn-block" type="submit" formmethod="post">Predict</button>
          </form>
-       </div>
+
        <div>{{data}}</div>
      <!-- </div> -->
+   <!-- </div> -->
   <h1>Predict location</h1>
-  <div>{{data1}}</div>
+<p>The condition you want to test to predict location:</p>
+
+<form method="POST" action="/search_location">
+
+<div class="form-group col-md-6"> 
+<label>class</label>
+  <input type="text" name="class"  class="form-control">
+</div>
+<div class="form-group col-md-6"> 
+  <label>appearHour</label>
+  <input type="text" name="appearedHour" class="form-control">
+</div>
+<div class="form-group col-md-6"> 
+  <label>appearedMinute</label>
+  <input type="text" name="appearedMinute" class="form-control">
+</div>
+<div class="form-group col-md-6"> 
+  <label>appeardTimeOfDay</label>
+  <input type="text" name="appearedTimeOfDay" class="form-control">
+</div>
+<div class="form-group col-md-6"> 
+  <label>terrainType</label>
+  <select name="terrainType" placeholder="terrainType" class="form-control">
+              <option disabled selected value>--select--</option>
+              <option>Unclassified</option>
+              <option>Urban and built-up</option>
+              <option>Evergreen Needleleaf forest</option>
+              <option>Closed shrublands</option>
+              <option>Deciduous Broadleaf forest</option>
+              <option>Grasslands</option>
+              <option>Snow and ice</option>
+              <option>Mixed forest</option>
+              <option>Cropland/Natural vegetation mosaic</option>
+              <option>Water</option>
+              <option>Open shrublands</option>
+              <option>Savannas</option>
+              <option>Barren or sparsely vegetated</option>
+              <option>Croplands</option>
+              <option>Permanent wetlands</option>
+              <option>Woody savannas</option>
+              <option>Fill Value</option>
+              <option>Deciduous Needleleaf forest</option>
+              <option>Evergreen Broadleaf forest</option>
+            </select>
+</div>
+<div class="form-group col-md-6"> 
+  <label>pressure</label>
+  <input type="text" name="pressure" class="form-control">
+</div>
+<div class="form-group col-md-6"> 
+  <label>windBearing</label>
+  <input type="text" name="windBearing" class="form-control">
+</div>
+<div class="form-group col-md-6"> 
+  <label>weather</label>
+  <select name="weather" placeholder="weather" class="form-control">
+              <option disabled selected value>--select--</option>
+              <option>DryandMostlyCloudy</option>
+              <option>BreezyandMostlyCloudy</option>
+              <option>BreezyandPartlyCloudy</option>
+              <option>DryandPartlyCloudy</option>
+              <option>MostlyCloudy</option>
+              <option>BreezyandOvercast</option>
+              <option>WindyandPartlyCloudy</option>
+              <option>HumidandPartlyCloudy</option>
+              <option>Rain</option>
+              <option>HumidandOvercast</option>
+              <option>Foggy</option>
+              <option>Dry</option>
+              <option>RainandWindy</option>
+              <option>LightRain</option>
+              <option>Clear</option>
+              <option>Overcast</option>
+              <option>Breezy</option>
+              <option>DangerouslyWindy</option>
+              <option>DrizzleandBreezy</option>
+              <option>Humid</option>
+              <option>HeavyRain</option>
+              <option>PartlyCloudy</option>
+              <option>LightRainandBreezy</option>
+              <option>Windy</option>
+              <option>Drizzle</option>
+              <option>WindyandFoggy</option>
+            </select>
+</div>
+<div class="form-group col-md-6"> 
+  <label>population_density</label>
+  <input type="text" name="population_density" class="form-control">
+</div>
+<div class="form-group col-md-6"> 
+  <label>temperature</label>
+  <input type="text" name="temperature" class="form-control">
+</div>
+
+<div class="form-group col-md-6"> 
+  <label>windSpeed</label>
+  <input type="text" name="windSpeed" class="form-control">
+</div>
+<div class="form-group col-md-6"> 
+  <label>closeToWater</label>
+  <select name="closeToWater" placeholder="closeToWater" class="form-control">
+                <option disabled selected value>--select--</option>
+                <option>True</option>
+                <option>False</option>
+                </select>
+</div>
+<button class="btn btn-lg btn-primary btn-block" type="submit" formmethod="post">Predict</button>
+</form>
+  <!-- <div>{{data1}}</div> -->
   <div>
     {% for n in data1 %}
     <div>{{n}}</div>
     {% endfor %}
   </div>
-
-
-<form method="POST" action="/search_location" class="form-signin">
-<p>The condition you want to test to predict location:</p>
-<input type="text" name="class">
-<input type="text" name="appearedHour">
-<input type="text" name="appearedMinute">
-<input type="text" name="appearedTimeOfDay">
-<input type="text" name="terrainType">
-<input type="text" name="pressure">
-<input type="text" name="windBearing">
-<input type="text" name="weather">
-<input type="text" name="population_density">
-<input type="text" name="temperature">
-<input type="text" name="windSpeed">
-<input type="text" name="closeToWater">
-<input type="submit" value="Predict">
-</form>
-      </div>
+</div>
         
-    </div><!-- /.container -->
+</div><!-- /.container -->
 {% endblock %}

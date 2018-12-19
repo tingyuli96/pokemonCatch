@@ -24,7 +24,7 @@ Bootstrap(app)
 #     population_density = convert_pd(float(request.form['population_density']))
 #     pclass = request.form['class']
 #     weather = request.form['weather']
-    
+
 def terrainTypechoise():
     d = {'Water':0,'Evergreen Needleleaf forest':1,'Evergreen Broadleaf forest':2,'Deciduous Needleleaf forest':3,
         'Deciduous Broadleaf forest':4,'Mixed forest':5,'Closed shrublands':6,'Open shrublands':7,'Woody savannas':8,
@@ -254,7 +254,7 @@ if __name__ == "__main__":
   @click.option('--debug', is_flag=True)
   @click.option('--threaded', is_flag=True)
   @click.argument('HOST', default='0.0.0.0')
-  @click.argument('PORT', default=8111, type=int)
+  @click.argument('PORT', default=8000, type=int)
   def run(debug, threaded, host, port):
     """
     This function handles command line parameters.
