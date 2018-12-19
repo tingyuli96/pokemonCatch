@@ -24,7 +24,7 @@ Bootstrap(app)
 #     population_density = convert_pd(float(request.form['population_density']))
 #     pclass = request.form['class']
 #     weather = request.form['weather']
-    
+
 def terrainTypechoise():
     d = {'Water':0,'Evergreen Needleleaf forest':1,'Evergreen Broadleaf forest':2,'Deciduous Needleleaf forest':3,
         'Deciduous Broadleaf forest':4,'Mixed forest':5,'Closed shrublands':6,'Open shrublands':7,'Woody savannas':8,
@@ -206,8 +206,8 @@ def predict_id():
     model = joblib.load('static/model.pkl')
     prediction = model.predict(feature)
     pid = pd.DataFrame({'a':prediction})
-    pred = IDtoName('static/pokemonNumbers.csv',pid['a'])
-    context = dict(data=pred)
+    pred = pd.DataFrame(IDtoName('static/pokemonNumbers.csv',pid['a']))
+    context = dict(data=pred.iloc[0]['a'])
     return render_template("index.html", **context)
 
 @app.route("/search_location",methods=['POST'])
