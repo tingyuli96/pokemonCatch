@@ -2,10 +2,39 @@ from flask import Flask, request, render_template, g, redirect, Response,session
 import os
 from sklearn.externals import joblib
 import pandas as pd
+from flask_bootstrap import Bootstrap
+from flask_wtf import FlaskForm, Form
+from wtforms import StringField, TextAreaField, PasswordField, SelectField, BooleanField, IntegerField
+from wtforms.validators import InputRequired,  DataRequired, Length, NumberRange
 
 app = Flask(__name__)
 tmpl_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
 app = Flask(__name__, template_folder=tmpl_dir)
+Bootstrap(app)
+
+# class FormPredictPokemon(FlaskForm):
+#     """docstring for FormPredictPokemon"""
+#     latitude = FloatField('latitude',validators = [InputRequired()])
+#     longitude = FloatField('longitude', validators = [InputRequired()])
+#     terrainType = convert_tp(request.form['terrainType'])
+#     closeToWater = convert_water(request.form['closeToWater'])
+#     temperature = request.form['temperature']
+#     windSpeed = request.form['windSpeed']
+#     pressure = request.form['pressure']
+#     population_density = convert_pd(float(request.form['population_density']))
+#     pclass = request.form['class']
+#     weather = request.form['weather']
+    
+def terrainTypechoise():
+    d = {'Water':0,'Evergreen Needleleaf forest':1,'Evergreen Broadleaf forest':2,'Deciduous Needleleaf forest':3,
+        'Deciduous Broadleaf forest':4,'Mixed forest':5,'Closed shrublands':6,'Open shrublands':7,'Woody savannas':8,
+        'Savannas':9,'Grasslands':10,'Permanent wetlands':11,'Croplands':12,'Urban and built-up':13,
+         'Cropland/Natural vegetation mosaic':14,'Snow and ice':15,'Barren or sparsely vegetated':16,'Unclassified':254,
+        'Fill Value':255}
+    d_list = []
+    for i in d:
+        d_list.append((d[i],i))
+    return d[a]
 
 def convert_pd(a):
     if a < 200:
@@ -124,10 +153,12 @@ def IDtoName(namefilepath, dataset):
     dictionary = dict(zip(Names['pokemonid'], Names['name']))
     dataset = dataset.apply(lambda x: dictionary[x])
     return dataset
+
 @app.route("/")
 def hello():
-    context = dict(data=hello)
-    return render_template("index.html", **context)
+    # context = dict(data=hello)
+    return render_template("index.html")
+
 @app.route("/search_id",methods=['POST'])
 def predict_id():
     latitude = request.form['latitude']
@@ -171,14 +202,14 @@ def predict_id():
     Weather['weather_'+weather] = 1
     feature = feature.join(Weather)
     feature = feature.drop(['weather'],1)
-    print(feature.shape) 
+    print(feature.shape)
     model = joblib.load('static/model.pkl')
     prediction = model.predict(feature)
     pid = pd.DataFrame({'a':prediction})
     pred = IDtoName('static/pokemonNumbers.csv',pid['a'])
     context = dict(data=pred)
     return render_template("index.html", **context)
-     
+
 @app.route("/search_location",methods=['POST'])
 def search_location():
     pclass = request.form['class']
@@ -209,12 +240,12 @@ def search_location():
     model_latitude = joblib.load('static/model_latitude.pkl')
     model_longitude = joblib.load('static/model_longitude.pkl')
     pred_latitude = model_latitude.predict(feature)
-    pred_longitude = model_longitude.predict(feature)  
-    result = [pred_latitude[0],pred_longitude[0]] 
-    print(result)    
+    pred_longitude = model_longitude.predict(feature)
+    result = [pred_latitude[0],pred_longitude[0]]
+    print(result)
     context = dict(data1=result)
     return render_template("index.html", **context)
-  
+
 
 if __name__ == "__main__":
   import click
