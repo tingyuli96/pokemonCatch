@@ -1,10 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Let's Catch Pokemon</title>
-</head>
+
+<html>
+  <style>
+    body   { 
+      font-size: 15pt;
+      font-family: arial;
+    }
+  </style>
+
+
 <body>
-{{data}}}
+  <h1>Predict pokemon</h1>
+  <div>{{data}}</div>
+  <h1>Predict location</h1>
+  <div>{{data1}}</div>
+  <div>
+    {% for n in data1 %}
+    <div>{{n}}</div>
+    {% endfor %}
+  </div>
+
+
+ 
+
+<form method="POST" action="/search_id">
+<p>The condition you want to test:
+ <input type="text" name="latitude">
+<input type="text" name="longitude">
+<input type="text" name="terrainType">
+<input type="text" name="closeToWater">
+<input type="text" name="temperature">
+<input type="text" name="windSpeed">
+<input type="text" name="pressure">
+<input type="text" name="population_density">
+<input type="text" name="class">
+<input type="text" name="weather">
+ <input type="submit" value="Predict">
+</p>
+</form>
+
+<form method="POST" action="/search_location">
+<p>The condition you want to test to predict location:
+ <input type="text" name="class">
+<input type="text" name="appearedHour">
+<input type="text" name="appearedMinute">
+<input type="text" name="appearedTimeOfDay">
+<input type="text" name="terrainType">
+<input type="text" name="pressure">
+<input type="text" name="windBearing">
+<input type="text" name="weather">
+<input type="text" name="population_density">
+<input type="text" name="temperature">
+<input type="text" name="windSpeed">
+<input type="text" name="closeToWater">
+ <input type="submit" value="Predict">
+</p>
+</form>
+
 </body>
+
+
 </html>
