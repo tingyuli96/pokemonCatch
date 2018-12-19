@@ -206,8 +206,8 @@ def predict_id():
     model = joblib.load('static/model.pkl')
     prediction = model.predict(feature)
     pid = pd.DataFrame({'a':prediction})
-    pred = IDtoName('static/pokemonNumbers.csv',pid['a'])
-    context = dict(data=pred)
+    pred = pd.DataFrame(IDtoName('static/pokemonNumbers.csv',pid['a']))
+    context = dict(data=pred.iloc[0]['a'])
     return render_template("index.html", **context)
 
 @app.route("/search_location",methods=['POST'])
