@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Pokemon and City</title>
     <script src="https://d3js.org/d3.v3.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <style>
       .axis path,
       .axis line {
@@ -19,9 +20,9 @@
 </head>
 <body>
     <h1 align="center">Pikachu City Distribution</h1>
-    <p id = "choice1">Sort Desc</p>
-    <p id = "choice2">Sort Dec</p>
-    <p id = "choice3">Alpha Sort</p>
+    <button id="choice1" type="button" class="btn btn-secondary">Sort Frequency, Descending</button>
+    <button id="choice2" type="button" class="btn btn-secondary">Sort Frequency, Ascending</button>
+    <button id="choice3" type="button" class="btn btn-secondary">Alphabetical</button>
 
     <script type="text/javascript">
 
