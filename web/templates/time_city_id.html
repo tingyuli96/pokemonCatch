@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Time City and PokemonID Distribution</title>
+    <meta charset="UTF-8">
+    <!-- <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="../static/css/dc.css"/>
+    <style >
+      .box{ border:1px; width:800px; height:500px;margin:auto}
+      .box2{border-left: 100px;margin-left: 150px}
+    </style>
+</head>
+<body>
+  <div class="box">
+    <h1 align="center">Time Distribution For Pokemon</h1>
+    <div class="box2">
+      <div id="chart-ring-year" style="margin:auto;width:500px; height:400px">
+        <div class="reset" style="visibility: hidden;">selected: <span class="filter"></span>
+          <a href="javascript:yearRingChart.filterAll();dc.redrawAll();">reset</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+<div class="box">
+  <h1 align="center">ID Distribution</h1>
+  <div id="chart-hist-spend" style="width:800px; height:400px">
+    <div class="reset" style="visibility: hidden;">range: <span class="filter"></span>
+      <a href="javascript:spendHistChart.filterAll();dc.redrawAll();">reset</a>
+    </div>
+  </div>
+</div>
+
+<div class="box">
+  <h1 align="center">City Distribution</h1>
+  <div id="chart-row-spenders" style="width:800px; height:500px">
+    <div class="reset" style="visibility: hidden;">selected: <span class="filter"></span>
+      <a href="javascript:spenderRowChart.filterAll();dc.redrawAll();">reset</a>
+    </div>
+  </div>
+</div>
+
+
+
+
+<script type="text/javascript" src="../static/js/d3.js"></script>
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script type="text/javascript" src="../static/js/crossfilter.js"></script>
+<script type="text/javascript" src="../static/js/dc.js"></script>
+<script type="text/javascript">
+var yearRingChart   = dc.pieChart("#chart-ring-year"),
+    spendHistChart  = dc.barChart("#chart-hist-spend"),
+    spenderRowChart = dc.rowChart("#chart-row-spenders");
+
+var row = []
+d3.csv("../static/time_city.csv", function(data) {
+    data.HOUR = data.time.substring(0,2)
+    data.ID = data.ID;
+    data.CITY = data.city;
+    row.push(data)
+    //row = data
+    console.log(row)
+//});
+
+//console.log(row)
+//console.log(spendData)
+// set crossfilter
+var ndx = crossfilter(row),
+    hourDim  = ndx.dimension(function(d) {return +d.HOUR;}),
+    IDDim = ndx.dimension(function(d) {return Math.floor(d.ID/10);}),
+    cityDim  = ndx.dimension(function(d) {return d.CITY;}),
+    IDPerHour = hourDim.group().reduceSum(function(d) {return +1;}),
+    IDPerName = cityDim.group().reduceSum(function(d) {return +1;}),
+    IDHist    = IDDim.group().reduceCount();
+
+yearRingChart
+    .dimension(hourDim)
+    .group(IDPerHour)
+    .innerRadius(50)
+    .controlsUseVisibility(true);
+
+  spendHistChart
+    .dimension(IDDim)
+    .group(IDHist)
+    .x(d3.scaleLinear().domain([0,15]))
+    .elasticY(true)
+    .controlsUseVisibility(true);
+
+spendHistChart.xAxis().tickFormat(function(d) {return d*10}); // convert back to base unit
+spendHistChart.yAxis().ticks(2);
+
+spenderRowChart
+    .dimension(cityDim)
+    .group(IDPerName)
+    .elasticX(true)
+    .controlsUseVisibility(true);
+
+  function show_empty_message(chart) {
+      var is_empty = d3.sum(chart.group().all().map(chart.valueAccessor())) === 0;
+      var data = is_empty ? [1] : [];
+      var empty = chart.svg().selectAll('.empty-message').data(data);
+      empty.exit().remove();
+      empty = empty
+          .enter()
+              .append('text')
+              .text('NO DATA!')
+              .attr('text-anchor', 'middle')
+              .attr('alignment-baseline', 'middle')
+              .attr('class', 'empty-message')
+              .attr('x', chart.margins().left + chart.effectiveWidth()/2)
+              .attr('y', chart.margins().top + chart.effectiveHeight()/2)
+              .style('opacity', 0)
+          .merge(empty);
+      empty.transition().duration(1000).style('opacity', 1);
+  }
+
+  spendHistChart.on('pretransition', show_empty_message);
+  spenderRowChart.on('pretransition', show_empty_message);
+
+dc.renderAll();
+});
+</script>
+
+</div>
+</body>
+</html>
