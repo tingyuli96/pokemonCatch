@@ -65,15 +65,15 @@ Let's Catch Pokemon
         <form method="POST" action="/search_id">  
         <div class="form-group col-md-6">
           <label for='latitude'>latitude</label>
-          <input type="text" name="latitude" id = 'latitude' placeholder="please input number" class="form-control">
+          <input type="text" name="latitude" id = 'latitude' placeholder="please input number" class="form-control" required autofocus>
         </div>
         <div class="form-group col-md-6">
           <label>longitude</label>
-          <input type="text" name="longitude"  placeholder="please input number" class="form-control">
+          <input type="text" name="longitude"  placeholder="please input number" class="form-control" required autofocus>
         </div>
         <div class="form-group col-md-6">
           <label>terrainType</label>
-          <select name="terrainType" placeholder="terrainType" class="form-control">
+          <select name="terrainType" placeholder="terrainType" class="form-control" required autofocus>
               <option disabled selected value>--select--</option>
               <option>Unclassified</option>
               <option>Urban and built-up</option>
@@ -99,7 +99,7 @@ Let's Catch Pokemon
         </div>
         <div class="form-group col-md-6"> 
           <label>closeToWater</label> 
-          <select name="closeToWater" placeholder="closeToWater" class="form-control">
+          <select name="closeToWater" placeholder="closeToWater" class="form-control" required autofocus>
                 <option disabled selected value>--select--</option>
                 <option>True</option>
                 <option>False</option>
@@ -107,27 +107,27 @@ Let's Catch Pokemon
         </div>
         <div class="form-group col-md-6">
           <label>temperature</label>
-          <input type="text" name="temperature" placeholder="please input number" class="form-control">
+          <input type="text" name="temperature" placeholder="please input number" class="form-control" required autofocus>
         </div>
         <div class="form-group col-md-6">
           <label>windSpeed</label>
-          <input type="text" name="windSpeed" placeholder="please input number" class="form-control">
+          <input type="text" name="windSpeed" placeholder="please input number" class="form-control" required autofocus>
         </div>
         <div class="form-group col-md-6">
           <label>pressure</label>
-          <input type="text" name="pressure" placeholder="please input number" class="form-control">
+          <input type="text" name="pressure" placeholder="please input number" class="form-control" required autofocus>
         </div>
         <div class="form-group col-md-6">
           <label>poplation_density</label>
-          <input type="text" name="population_density" placeholder="please input number" class="form-control">
+          <input type="text" name="population_density" placeholder="please input number" class="form-control" required autofocus>
         </div>
         <div class="form-group col-md-6">
           <label>Pokemon class</label>
-          <input type="text" name="class" placeholder="please input integer" class="form-control">
+          <input type="text" name="class" placeholder="please input integer" class="form-control" required autofocus>
         </div>
         <div class="form-group col-md-6">
           <label>weather</label>
-          <select name="weather" placeholder="weather" class="form-control">
+          <select name="weather" placeholder="weather" class="form-control" required autofocus required autofocus>
               <option disabled selected value>--select--</option>
               <option>DryandMostlyCloudy</option>
               <option>BreezyandMostlyCloudy</option>
@@ -190,23 +190,23 @@ Let's Catch Pokemon
 
 <div class="form-group col-md-6"> 
 <label>Pokemon class</label>
-  <input type="text" name="class"  class="form-control" placeholder="please input integer">
+  <input type="text" name="class"  class="form-control" placeholder="please input integer" required autofocus>
 </div>
 <div class="form-group col-md-6"> 
   <label>appearHour</label>
-  <input type="text" name="appearedHour" class="form-control"  placeholder="please input number">
+  <input type="text" name="appearedHour" class="form-control"  placeholder="please input number" required autofocus>
 </div>
 <div class="form-group col-md-6"> 
   <label>appearedMinute</label>
-  <input type="text" name="appearedMinute" class="form-control" placeholder="please input number">
+  <input type="text" name="appearedMinute" class="form-control" placeholder="please input number" required autofocus>
 </div>
 <div class="form-group col-md-6"> 
   <label>appeardTimeOfDay</label>
-  <input type="text" name="appearedTimeOfDay" class="form-control" placeholder="please input number">
+  <input type="text" name="appearedTimeOfDay" class="form-control" placeholder="please input number" required autofocus>
 </div>
 <div class="form-group col-md-6"> 
   <label>terrainType</label>
-  <select name="terrainType" placeholder="terrainType" class="form-control" placeholder="please input number">
+  <select name="terrainType" placeholder="terrainType" class="form-control" placeholder="please input number" required autofocus>
               <option disabled selected value>--select--</option>
               <option>Unclassified</option>
               <option>Urban and built-up</option>
@@ -231,15 +231,15 @@ Let's Catch Pokemon
 </div>
 <div class="form-group col-md-6"> 
   <label>pressure</label>
-  <input type="text" name="pressure" class="form-control" placeholder="please input number">
+  <input type="text" name="pressure" class="form-control" placeholder="please input number" required autofocus>
 </div>
 <div class="form-group col-md-6"> 
   <label>windBearing</label>
-  <input type="text" name="windBearing" class="form-control" placeholder="please input number">
+  <input type="text" name="windBearing" class="form-control" placeholder="please input number" required autofocus>
 </div>
 <div class="form-group col-md-6"> 
   <label>weather</label>
-  <select name="weather" placeholder="weather" class="form-control" placeholder="please input number">
+  <select name="weather" placeholder="weather" class="form-control" placeholder="please input number" required autofocus>
               <option disabled selected value>--select--</option>
               <option>DryandMostlyCloudy</option>
               <option>BreezyandMostlyCloudy</option>
@@ -271,20 +271,20 @@ Let's Catch Pokemon
 </div>
 <div class="form-group col-md-6"> 
   <label>population_density</label>
-  <input type="text" name="population_density" class="form-control" placeholder="please input number">
+  <input type="text" name="population_density" class="form-control" placeholder="please input number" required autofocus>
 </div>
 <div class="form-group col-md-6"> 
   <label>temperature</label>
-  <input type="text" name="temperature" class="form-control" placeholder="please input number">
+  <input type="text" name="temperature" class="form-control" placeholder="please input number" required autofocus>
 </div>
 
 <div class="form-group col-md-6"> 
   <label>windSpeed</label>
-  <input type="text" name="windSpeed" class="form-control" placeholder="please input number">
+  <input type="text" name="windSpeed" class="form-control" placeholder="please input number" required autofocus>
 </div>
 <div class="form-group col-md-6"> 
   <label>closeToWater</label>
-  <select name="closeToWater" placeholder="closeToWater" class="form-control" placeholder="please input number">
+  <select name="closeToWater" placeholder="closeToWater" class="form-control" placeholder="please input number" required autofocus>
                 <option disabled selected value>--select--</option>
                 <option>True</option>
                 <option>False</option>
