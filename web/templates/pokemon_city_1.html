@@ -1,8 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Pokemon and City</title>
+{% extends "bootstrap/base.html" %}
+
+{% block title %}
+Let's Catch Pokemon
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('.static', filename='css/starter-template-1.css')}}">
     <script src="https://d3js.org/d3.v3.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <style>
@@ -17,29 +21,29 @@
            font-size: 11px;
       }
  </style>
-</head>
-<body>
+{% endblock %}
+
+{% block content %}
 <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
+<!--           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          </button> -->
           <a class="navbar-brand" href="/">Catch Pokemon</a>
+          
         </div>
-        <div id="navbar" class="collapse navbar-collapse">
+<!--         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="/">Home</a></li>
             <li><a href="/time_city_id">visualize pokemon</a></li>
             <li><a href="/pokemon_city">Pokemon in city</a></li>
             <li><a href=""></a></li>
           </ul>
-        </div> 
+        </div>  -->
       </div>
     </nav> 
+  <div class="container">
+
     <h1 align="center">Pikachu City Distribution</h1>
     <button id="choice1" type="button" class="btn btn-secondary">Sort Frequency, Descending</button>
     <button id="choice2" type="button" class="btn btn-secondary">Sort Frequency, Ascending</button>
@@ -68,7 +72,7 @@
 
           //Index function
           var height = 600
-          var width = 1800
+          var width = 1300
           var padding ={  top: 40,
                           right: 40,
                           bottom: 80,
@@ -82,7 +86,7 @@
 
 
         //Axis width set
-        var xAxisWidth = 1800
+        var xAxisWidth = 1300
         var yAxisWidth = 600
 
         //Axis Domain and Range set
@@ -208,6 +212,5 @@ function draw(data){
 
 
     </script>
-
-</body>
-</html>
+</div>
+{% endblock %}

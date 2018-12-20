@@ -6,9 +6,18 @@ Let's Catch Pokemon
 
 {% block styles %}
 {{super()}}
-<link rel="stylesheet" href="{{url_for('.static', filename='starter-template.css')}}">
-<!-- <link rel="stylesheet" href="{{url_for('.static', filename='signin.css')}}">
-<link rel="stylesheet" href="{{url_for('.static', filename='update.css')}}"> -->
+<link rel="stylesheet" href="{{url_for('.static', filename='css/starter-template.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='css/signin.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='css/update.css')}}">
+<link rel="stylesheet" href="{{url_for('.static', filename='css/dashboard.css')}}">
+<style type="text/css">  
+#linesolid {
+  border-top:1px;
+  height:1px;  
+  border-bottom:3px solid #ccc;  
+  overflow:hidden;}  
+#linedash {border-bottom: 1px dashed #cccccc;height: 1px;overflow:hidde; margin-bottom: 30px;padding-top: 30px}
+</style> 
 {% endblock %}
 
 {% block content %}
@@ -26,14 +35,13 @@ Let's Catch Pokemon
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="/">Home</a></li>
-            <li><a href=""></a></li>
-            <li><a href="">Predict pokemon</a></li>
-            <li><a href="">Pokemon in city</a></li>
+            <li><a href="/time_city_id">visualize pokemon</a></li>
+            <li><a href="/pokemon_city">Pokemon in city</a></li>
             <li><a href=""></a></li>
           </ul>
-        </div><!--/.nav-collapse -->
+        </div> <!-- /.nav-collapse-->
       </div>
-    </nav>
+    </nav> 
 
   <div class="container">
       <div class="starter-template">
@@ -57,11 +65,11 @@ Let's Catch Pokemon
         <form method="POST" action="/search_id">  
         <div class="form-group col-md-6">
           <label for='latitude'>latitude</label>
-          <input type="text" name="latitude" id = 'latitude' placeholder="latitude" class="form-control">
+          <input type="text" name="latitude" id = 'latitude' placeholder="please input number" class="form-control">
         </div>
         <div class="form-group col-md-6">
           <label>longitude</label>
-          <input type="text" name="longitude"  placeholder="longitude" class="form-control">
+          <input type="text" name="longitude"  placeholder="please input number" class="form-control">
         </div>
         <div class="form-group col-md-6">
           <label>terrainType</label>
@@ -99,23 +107,23 @@ Let's Catch Pokemon
         </div>
         <div class="form-group col-md-6">
           <label>temperature</label>
-          <input type="text" name="temperature" placeholder="temperature" class="form-control">
+          <input type="text" name="temperature" placeholder="please input number" class="form-control">
         </div>
         <div class="form-group col-md-6">
           <label>windSpeed</label>
-          <input type="text" name="windSpeed" placeholder="windSpeed" class="form-control">
+          <input type="text" name="windSpeed" placeholder="please input number" class="form-control">
         </div>
         <div class="form-group col-md-6">
           <label>pressure</label>
-          <input type="text" name="pressure" placeholder="" class="form-control">
+          <input type="text" name="pressure" placeholder="please input number" class="form-control">
         </div>
         <div class="form-group col-md-6">
           <label>poplation_density</label>
-          <input type="text" name="population_density" placeholder="integer" class="form-control">
+          <input type="text" name="population_density" placeholder="please input number" class="form-control">
         </div>
         <div class="form-group col-md-6">
           <label>Pokemon class</label>
-          <input type="text" name="class" placeholder="integer" class="form-control">
+          <input type="text" name="class" placeholder="please input integer" class="form-control">
         </div>
         <div class="form-group col-md-6">
           <label>weather</label>
@@ -152,33 +160,53 @@ Let's Catch Pokemon
            <button class="btn btn-lg btn-primary btn-block" type="submit" formmethod="post">Predict</button>
          </form>
 
-       <div>{{data}}</div>
+        <div id="linedash"></div>
+        <h3 class="page-header">Pokemon Result</h3>
+    <div class="table-responsive">
+      <table class="table table-dark">
+<!--               <thead>
+                <tr>
+                  <th>Pokemon Result</th>
+                </tr>
+              </thead> -->
+              <tbody>
+                <tr>
+                  <td>name</td>
+                </tr>
+                <tr>
+                  <td>{{data}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
      <!-- </div> -->
    <!-- </div> -->
-  <h1>Predict location</h1>
+   <div id="linesolid"></div>
+  <h2>Predict location</h2>
 <p>The condition you want to test to predict location:</p>
 
 <form method="POST" action="/search_location">
 
 <div class="form-group col-md-6"> 
-<label>class</label>
-  <input type="text" name="class"  class="form-control">
+<label>Pokemon class</label>
+  <input type="text" name="class"  class="form-control" placeholder="please input integer">
 </div>
 <div class="form-group col-md-6"> 
   <label>appearHour</label>
-  <input type="text" name="appearedHour" class="form-control">
+  <input type="text" name="appearedHour" class="form-control"  placeholder="please input number">
 </div>
 <div class="form-group col-md-6"> 
   <label>appearedMinute</label>
-  <input type="text" name="appearedMinute" class="form-control">
+  <input type="text" name="appearedMinute" class="form-control" placeholder="please input number">
 </div>
 <div class="form-group col-md-6"> 
   <label>appeardTimeOfDay</label>
-  <input type="text" name="appearedTimeOfDay" class="form-control">
+  <input type="text" name="appearedTimeOfDay" class="form-control" placeholder="please input number">
 </div>
 <div class="form-group col-md-6"> 
   <label>terrainType</label>
-  <select name="terrainType" placeholder="terrainType" class="form-control">
+  <select name="terrainType" placeholder="terrainType" class="form-control" placeholder="please input number">
               <option disabled selected value>--select--</option>
               <option>Unclassified</option>
               <option>Urban and built-up</option>
@@ -203,15 +231,15 @@ Let's Catch Pokemon
 </div>
 <div class="form-group col-md-6"> 
   <label>pressure</label>
-  <input type="text" name="pressure" class="form-control">
+  <input type="text" name="pressure" class="form-control" placeholder="please input number">
 </div>
 <div class="form-group col-md-6"> 
   <label>windBearing</label>
-  <input type="text" name="windBearing" class="form-control">
+  <input type="text" name="windBearing" class="form-control" placeholder="please input number">
 </div>
 <div class="form-group col-md-6"> 
   <label>weather</label>
-  <select name="weather" placeholder="weather" class="form-control">
+  <select name="weather" placeholder="weather" class="form-control" placeholder="please input number">
               <option disabled selected value>--select--</option>
               <option>DryandMostlyCloudy</option>
               <option>BreezyandMostlyCloudy</option>
@@ -243,20 +271,20 @@ Let's Catch Pokemon
 </div>
 <div class="form-group col-md-6"> 
   <label>population_density</label>
-  <input type="text" name="population_density" class="form-control">
+  <input type="text" name="population_density" class="form-control" placeholder="please input number">
 </div>
 <div class="form-group col-md-6"> 
   <label>temperature</label>
-  <input type="text" name="temperature" class="form-control">
+  <input type="text" name="temperature" class="form-control" placeholder="please input number">
 </div>
 
 <div class="form-group col-md-6"> 
   <label>windSpeed</label>
-  <input type="text" name="windSpeed" class="form-control">
+  <input type="text" name="windSpeed" class="form-control" placeholder="please input number">
 </div>
 <div class="form-group col-md-6"> 
   <label>closeToWater</label>
-  <select name="closeToWater" placeholder="closeToWater" class="form-control">
+  <select name="closeToWater" placeholder="closeToWater" class="form-control" placeholder="please input number">
                 <option disabled selected value>--select--</option>
                 <option>True</option>
                 <option>False</option>
@@ -265,12 +293,35 @@ Let's Catch Pokemon
 <button class="btn btn-lg btn-primary btn-block" type="submit" formmethod="post">Predict</button>
 </form>
   <!-- <div>{{data1}}</div> -->
-  <div>
+  <div id="linedash"></div>
+  <h3 class="page-header">Location Result</h3>
+  <div class="table-responsive">
+  <table class="table table-dark" align="center">
+<!--               <thead>
+                <tr>
+                  <th>Location Result</th>
+                </tr>
+              </thead> -->
+              <tbody>
+                <tr>
+                  <td>longitude</td>
+                  <td>latitude</td>
+                </tr>
+                <tr>
+                  {% for n in data1 %}
+                    <td>{{n}}</td>
+                    {% endfor %}
+                </tr>
+              </tbody>
+            </table>
+     </div>
+    </div>
+<!--   <div>
     {% for n in data1 %}
     <div>{{n}}</div>
     {% endfor %}
   </div>
-</div>
+</div> -->
         
 </div><!-- /.container -->
 {% endblock %}
