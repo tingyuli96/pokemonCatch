@@ -247,6 +247,13 @@ def search_location():
     context = dict(data1=result)
     return render_template("index.html", **context)
 
+@app.route("/pokemon_city",methods = ['GET'])
+def show_pokemoncity():
+    return render_template('pokemon_city_1.html')
+
+@app.route("/time_city_id",methods = ['GET'])
+def time_city_id():
+    return render_template('time_city_id_1.html')
 
 if __name__ == "__main__":
   import click
