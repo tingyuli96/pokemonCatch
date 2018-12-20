@@ -24,7 +24,7 @@ Bootstrap(app)
 #     population_density = convert_pd(float(request.form['population_density']))
 #     pclass = request.form['class']
 #     weather = request.form['weather']
-
+    
 def terrainTypechoise():
     d = {'Water':0,'Evergreen Needleleaf forest':1,'Evergreen Broadleaf forest':2,'Deciduous Needleleaf forest':3,
         'Deciduous Broadleaf forest':4,'Mixed forest':5,'Closed shrublands':6,'Open shrublands':7,'Woody savannas':8,
@@ -207,7 +207,8 @@ def predict_id():
     prediction = model.predict(feature)
     pid = pd.DataFrame({'a':prediction})
     pred = pd.DataFrame(IDtoName('static/pokemonNumbers.csv',pid['a']))
-    context = dict(data=pred.iloc[0]['a'])
+    pred = pred.iloc[0]['a']
+    context = dict(data=pred)
     return render_template("index.html", **context)
 
 @app.route("/search_location",methods=['POST'])
@@ -246,13 +247,6 @@ def search_location():
     context = dict(data1=result)
     return render_template("index.html", **context)
 
-@app.route("/pokemon_city",methods = ['GET'])
-def show_pokemoncity():
-    return render_template('pokemon_city_1.html')
-
-@app.route("/time_city_id",methods = ['GET'])
-def time_city_id():
-    return render_template('time_city_id_1.html')
 
 if __name__ == "__main__":
   import click
@@ -261,7 +255,7 @@ if __name__ == "__main__":
   @click.option('--debug', is_flag=True)
   @click.option('--threaded', is_flag=True)
   @click.argument('HOST', default='0.0.0.0')
-  @click.argument('PORT', default=8000, type=int)
+  @click.argument('PORT', default=8111, type=int)
   def run(debug, threaded, host, port):
     """
     This function handles command line parameters.
