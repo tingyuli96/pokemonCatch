@@ -21,7 +21,7 @@ For all our data, you can see the distribution of cities, id and local time in h
 ![](https://github.com/colirain/pokemonCatch/blob/master/web/src/time_city_id.jpg)
 ![](https://github.com/colirain/pokemonCatch/blob/master/web/src/time_city_id_2.jpg)
 
-HEnjoy!
+Enjoy!
 
 ### Directory Hierarchy
 
