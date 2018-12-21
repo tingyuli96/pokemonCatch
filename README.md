@@ -26,7 +26,9 @@ pokemonCatch
 |	|--predict_id.ipynb
 |	|--predic_location.ipynb  
 |	|--SimilarPokemonPredict.ipynb  
-+--Result  
+|--Result  
+|
+|--web
 ````
 
 
